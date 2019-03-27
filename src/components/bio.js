@@ -33,9 +33,9 @@ function Bio() {
             />
             <a
               style={{
-                fontSize: 20,
+                fontSize: 14,
                 color: `#3C5A99`,
-                textDecoration: `none`,
+                boxShadow: `none`,
               }}
               href={`${social.facebook}`}
             >
