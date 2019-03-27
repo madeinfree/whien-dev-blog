@@ -6,6 +6,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import { withPrefix } from "gatsby"
 
 class BlogIndex extends React.Component {
   render() {
@@ -19,25 +20,33 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`, `whien`]}
         />
+        <h3>{`My Home Cat 🐱`}</h3>
+        <img
+          style={{ borderRadius: 3 }}
+          src={withPrefix("/img/tata.jpg")}
+          alt="tata-mycat"
+        />
         <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
             <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+              <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <h3
+                  style={{
+                    marginTop: 20,
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
                   {title}
-                </Link>
-              </h3>
-              {node.frontmatter.featuredImage ? (
-                <Img
-                  sizes={node.frontmatter.featuredImage.childImageSharp.sizes}
-                />
-              ) : null}
+                </h3>
+                {node.frontmatter.featuredImage ? (
+                  <Img
+                    style={{ borderRadius: 3 }}
+                    sizes={node.frontmatter.featuredImage.childImageSharp.sizes}
+                  />
+                ) : null}
+              </Link>
               <small>{node.frontmatter.date}</small>
               <p
                 dangerouslySetInnerHTML={{
@@ -47,24 +56,6 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
-        <a
-          href={`https://www.buymeacoffee.com/OqAoBMY`}
-          target={`_blank`}
-          rel={`noopener noreferrer`}
-          style={{
-            boxShadow: `none`,
-          }}
-        >
-          <img
-            src={`https://www.buymeacoffee.com/assets/img/custom_images/black_img.png`}
-            alt={`斗內一杯咖啡`}
-            style={{
-              marginBottom: 0,
-              height: `auto !important`,
-              width: `auto !important`,
-            }}
-          />
-        </a>
       </Layout>
     )
   }
