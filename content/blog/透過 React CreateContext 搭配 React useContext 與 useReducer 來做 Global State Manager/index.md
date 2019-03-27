@@ -2,7 +2,10 @@
 title: 透過 React CreateContext 搭配 React useContext 與 useReducer 來做 Global State Manager
 date: "2019-03-27T21:10:30.284Z"
 description: "透過 React Context API 與 hooks 來做 state manger"
+featuredImage: "./titleImage.jpeg"
 ---
+
+![Image](https://cdn-images-1.medium.com/max/2560/1*UNln2JsoPZEVzgGPJhs98w.jpeg)
 
 # 服用 CodeSandbox 範例
 
