@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "Whien-dev-blogger",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Whien's Dev Blogger",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Whien <sal95610@gmail.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -40,7 +40,8 @@
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blogger"
   ],
   "license": "MIT",
   "main": "n/a",
