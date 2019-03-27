@@ -2,7 +2,6 @@
 title: 為什麼從 Medium 轉移至 Gatsby Bloger ?
 date: "2019-03-27T20:29:30.284Z"
 description: "使用了 Medium 將近兩年時間，決定要遷移了..."
-featuredImage: "./titleImage.jpeg"
 ---
 
 使用了將近兩年的 Medium，最近決定從 Medium 遷移至 gatsby 中，為什麼呢？

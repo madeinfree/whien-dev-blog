@@ -15,6 +15,14 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
+          meta={[
+            {
+              name: `og:image`,
+              content: post.frontmatter.featuredImage
+                ? post.frontmatter.featuredImage.publicURL
+                : "",
+            },
+          ]}
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
@@ -84,6 +92,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        featuredImage {
+          publicURL
+        }
       }
     }
   }
