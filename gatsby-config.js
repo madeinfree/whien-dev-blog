@@ -8,7 +8,6 @@ module.exports = {
     social: {
       facebook: `https://www.facebook.com/haowei.liou`,
     },
-    image: "",
   },
   plugins: [
     {

@@ -17,18 +17,19 @@ class BlogPostTemplate extends React.Component {
       identifier: post.id,
       title: post.frontmatter.title,
     }
+    const seoMetaOptions = [
+      {
+        name: `og:image`,
+        content: post.frontmatter.featuredImage
+          ? post.frontmatter.featuredImage.publicURL
+          : "",
+      },
+    ]
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          meta={[
-            {
-              name: `og:image`,
-              content: post.frontmatter.featuredImage
-                ? post.frontmatter.featuredImage.publicURL
-                : "",
-            },
-          ]}
+          meta={seoMetaOptions}
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
