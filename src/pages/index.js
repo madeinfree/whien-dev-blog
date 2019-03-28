@@ -5,8 +5,8 @@ import Bio from "../components/bio"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import HomeCat from "../components/homeCat"
 import { rhythm } from "../utils/typography"
-import { withPrefix } from "gatsby"
 
 class BlogIndex extends React.Component {
   render() {
@@ -20,13 +20,8 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`, `whien`]}
         />
-        <h3>{`My Home Cat 🐱`}</h3>
-        <img
-          style={{ borderRadius: 3 }}
-          src={withPrefix("/img/tata.jpg")}
-          alt="tata-mycat"
-        />
         <Bio />
+        <HomeCat />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (

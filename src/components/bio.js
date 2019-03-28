@@ -4,6 +4,20 @@ import Image from "gatsby-image"
 
 import { rhythm } from "../utils/typography"
 
+function SocialLink({ link, children }) {
+  return (
+    <a
+      style={{
+        color: `#757575`,
+      }}
+      href={link}
+      target={`_blank`}
+    >
+      {children}
+    </a>
+  )
+}
+
 function Bio() {
   return (
     <StaticQuery
@@ -30,16 +44,18 @@ function Bio() {
                 borderRadius: `50%`,
               }}
             />
-            <a
-              style={{
-                fontSize: 14,
-                color: `#3C5A99`,
-                boxShadow: `none`,
-              }}
-              href={`${social.facebook}`}
-            >
-              Welcome to follow me on Facebook
-            </a>
+            <div>
+              嗨，我是懷恩，專注於 JavaScript 多年的開發者，
+              <SocialLink link={`https://jioukou.yosgo.com/`}>
+                目前在 YOSGO 擔任開發領導
+              </SocialLink>
+              ，空閒時也會舉辦一些 Workshop 分享實體活動，您可以透過{` `}
+              <SocialLink link={social.facebook}>Facebook</SocialLink>,{` `}
+              <SocialLink link={social.github}>Github</SocialLink> 或{` `}
+              <SocialLink link={`mailto:sal95610@gmail.com`}>寫信</SocialLink>
+              {` `}
+              與我聯繫。
+            </div>
           </div>
         )
       }}
@@ -61,6 +77,8 @@ const bioQuery = graphql`
         author
         social {
           facebook
+          github
+          email
         }
       }
     }
