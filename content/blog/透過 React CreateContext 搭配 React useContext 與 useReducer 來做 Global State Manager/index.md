@@ -9,7 +9,7 @@ featuredImage: "./titleImage.jpeg"
 
 # 服用 CodeSandbox 範例
 
-範例: [Code Sandbox](https://codesandbox.io/s/0o10kq73zv)
+範例：[Code Sandbox](https://codesandbox.io/s/0o10kq73zv)
 
 # 碎碎念
 

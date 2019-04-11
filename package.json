@@ -8,6 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "disqus-react": "^1.0.5",
     "gatsby": "^2.2.13",
     "gatsby-image": "^2.0.35",
@@ -19,6 +20,7 @@
     "gatsby-plugin-sharp": "^2.0.31",
     "gatsby-plugin-typography": "^2.2.10",
     "gatsby-remark-copy-linked-files": "^2.0.11",
+    "gatsby-remark-external-links": "^0.0.4",
     "gatsby-remark-images": "^2.0.6",
     "gatsby-remark-prismjs": "^3.2.6",
     "gatsby-remark-responsive-iframe": "^2.1.1",
@@ -34,7 +36,8 @@
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.54",
     "typography": "^0.16.19",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "typography-theme-wordpress-2016": "^0.16.19",
+    "yarn": "^1.15.2"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",
