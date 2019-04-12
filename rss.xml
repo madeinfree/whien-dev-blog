@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Whien's Dev Blog]]></title><description><![CDATA[Do right things.]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 11 Apr 2019 08:02:54 GMT</lastBuildDate><item><title><![CDATA[透過 Web IntersectionObserver API 優化網站圖片]]></title><description><![CDATA[範例服用 免費圖片壓縮工具： Imgr 範例： Examples 懶載入簡介 懶載入是個已經使用非常非常久的網站圖片優化手法，所謂的「懶」就是類似「延遲」的概念，
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Whien's Dev Blog]]></title><description><![CDATA[Do right things.]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Apr 2019 03:53:09 GMT</lastBuildDate><item><title><![CDATA[修改 AWS Elastic Beanstalk Nginx Proxy Config]]></title><description><![CDATA[Elastic Beanstalk 簡介 Elastic Beanstalk 簡稱 EB，是由 AWS 提供的快速建置並部署環境服務，只要簡單的幾個設定檔，就能輕輕鬆鬆建立好伺服器環境。 Nginx Nginx…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//修改 AWS Elastic Beanstalk Nginx Proxy Config/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//修改 AWS Elastic Beanstalk Nginx Proxy Config/</guid><pubDate>Fri, 12 Apr 2019 11:11:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/AyNenTs.jpg&quot; alt=&quot;Photo by Todd Quackenbush on Unsplash&quot;&gt;&lt;/p&gt;
+&lt;h1&gt;Elastic Beanstalk 簡介&lt;/h1&gt;
+&lt;p&gt;Elastic Beanstalk 簡稱 EB，是由 AWS 提供的快速建置並部署環境服務，只要簡單的幾個設定檔，就能輕輕鬆鬆建立好伺服器環境。&lt;/p&gt;
+&lt;h1&gt;Nginx&lt;/h1&gt;
+&lt;p&gt;Nginx 是個強大的負載平衡代理伺服器，會負責管理與分配我們的請求與回應，在建立 EB 伺服器時，可以預設是否使用 Nginx 當代理伺服器。&lt;/p&gt;
+&lt;h1&gt;Client Max Body Size&lt;/h1&gt;
+&lt;p&gt;client-max-body-size 是 Nginx 中一個設定，能夠指定當有資料進來時，能夠接收的大小有多少，而 EB 在 Nginx 中預設似乎為 1MB，因此導致某個服務在上傳檔案時，發生「413 Request Entity Too Large」，請求資料大小過載的問題，因此開始了尋找解答之旅。&lt;/p&gt;
+&lt;h1&gt;網路上找解答&lt;/h1&gt;
+&lt;p&gt;找了非常多網路上的資源，都看到類似以下片段&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;config&quot;&gt;&lt;pre class=&quot;language-config&quot;&gt;&lt;code class=&quot;language-config&quot;&gt;files:
+  &amp;quot;/etc/nginx/conf.d/proxy.conf&amp;quot;:
+    mode: &amp;quot;000644&amp;quot;
+    owner: root
+    group: root
+    content: |
+      client_max_body_size 10M;
+
+container_commands:
+  01_reload_nginx:
+    command: &amp;quot;service nginx reload&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但怎麼試就是不行，一直沒有產生效果。&lt;/p&gt;
+&lt;h1&gt;建立 .ebextensions 目錄&lt;/h1&gt;
+&lt;p&gt;後來看討論後發現原來是要先在專案的目錄底下建立 &lt;code class=&quot;language-text&quot;&gt;.ebextensions&lt;/code&gt; 資料夾&lt;/p&gt;
+&lt;h1&gt;增加 proxy.config 檔案&lt;/h1&gt;
+&lt;p&gt;建立好 .ebextensions 目錄後，接著再增加一個 proxy.config 檔案，並將檔案內容改為&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;config&quot;&gt;&lt;pre class=&quot;language-config&quot;&gt;&lt;code class=&quot;language-config&quot;&gt;files:
+  /etc/nginx/conf.d/proxy.conf:
+    mode: &amp;quot;000644&amp;quot;
+    owner: root
+    group: root
+    content: |
+      client_max_body_size 100M;
+
+  /opt/elasticbeanstalk/hooks/configdeploy/post/99_kill_default_nginx.sh:
+    mode: &amp;quot;000755&amp;quot;
+    owner: root
+    group: root
+    content: |
+      #!/bin/bash -xe
+      service nginx stop
+      service nginx start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;從檔案內容中可以看出 client&lt;em&gt;max&lt;/em&gt;body_size 更改後要再 &lt;code class=&quot;language-text&quot;&gt;service nginx stop&lt;/code&gt; 與 &lt;code class=&quot;language-text&quot;&gt;service nginx start&lt;/code&gt; 才能正常運行。&lt;/p&gt;
+&lt;h1&gt;總結&lt;/h1&gt;
+&lt;p&gt;看了網路上百百種解答，調整了老半天，還掛掉導致停機了一段時間，最後內容還是在 AWS Documentation 找到，但至少解決了！&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;工商推廣&lt;/h1&gt;
+&lt;h2&gt;Image Resizer - Imgr&lt;/h2&gt;
+&lt;p&gt;連結：&lt;a href=&quot;https://imgr.yosgo.com&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Imgr&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://imgr.yosgo.com&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Imgr&lt;/a&gt; 是一個輕便的圖片壓縮服務，如果想達到圖片懶載入效果，需要有兩張圖片，通常團隊會自行撰寫圖片壓縮的服務，如果您沒有找到適當的壓縮工具，也想快速的產生壓縮圖片，Imgr(Image Resizer) 會是您的好夥伴。&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[透過 Web IntersectionObserver API 優化網站圖片]]></title><description><![CDATA[範例服用 免費圖片壓縮工具： Imgr 範例： Examples 懶載入簡介 懶載入是個已經使用非常非常久的網站圖片優化手法，所謂的「懶」就是類似「延遲」的概念，
 在網頁載入時，會將所有的  < img…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//透過 Web IntersectionObserver API 優化網站圖片/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//透過 Web IntersectionObserver API 優化網站圖片/</guid><pubDate>Thu, 11 Apr 2019 14:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://upload.cc/i1/2019/04/11/sBy4kD.jpg&quot; alt=&quot;Image&quot;&gt;&lt;/p&gt;
 &lt;h1&gt;範例服用&lt;/h1&gt;
 &lt;p&gt;免費圖片壓縮工具：&lt;a href=&quot;https://imgr.yosgo.com&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Imgr&lt;/a&gt;&lt;/p&gt;
