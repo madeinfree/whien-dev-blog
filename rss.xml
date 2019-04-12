@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Whien's Dev Blog]]></title><description><![CDATA[Do right things.]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Apr 2019 03:53:09 GMT</lastBuildDate><item><title><![CDATA[修改 AWS Elastic Beanstalk Nginx Proxy Config]]></title><description><![CDATA[Elastic Beanstalk 簡介 Elastic Beanstalk 簡稱 EB，是由 AWS 提供的快速建置並部署環境服務，只要簡單的幾個設定檔，就能輕輕鬆鬆建立好伺服器環境。 Nginx Nginx…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//修改 AWS Elastic Beanstalk Nginx Proxy Config/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//修改 AWS Elastic Beanstalk Nginx Proxy Config/</guid><pubDate>Fri, 12 Apr 2019 11:11:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/AyNenTs.jpg&quot; alt=&quot;Photo by Todd Quackenbush on Unsplash&quot;&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Whien's Dev Blog]]></title><description><![CDATA[Do right things.]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Apr 2019 04:21:36 GMT</lastBuildDate><item><title><![CDATA[透過修改 AWS Elastic Beanstalk Nginx Proxy Config 解決 「413 Request Entity Too Large」]]></title><description><![CDATA[Elastic Beanstalk 簡介 Elastic Beanstalk 簡稱 EB，是由 AWS 提供的快速建置並部署環境服務，只要簡單的幾個設定檔，就能輕輕鬆鬆建立好伺服器環境。 Nginx Nginx…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//修改 AWS Elastic Beanstalk Nginx Proxy Config/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//修改 AWS Elastic Beanstalk Nginx Proxy Config/</guid><pubDate>Fri, 12 Apr 2019 11:11:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/AyNenTs.jpg&quot; alt=&quot;Photo by Todd Quackenbush on Unsplash&quot;&gt;&lt;/p&gt;
 &lt;h1&gt;Elastic Beanstalk 簡介&lt;/h1&gt;
 &lt;p&gt;Elastic Beanstalk 簡稱 EB，是由 AWS 提供的快速建置並部署環境服務，只要簡單的幾個設定檔，就能輕輕鬆鬆建立好伺服器環境。&lt;/p&gt;
 &lt;h1&gt;Nginx&lt;/h1&gt;
 &lt;p&gt;Nginx 是個強大的負載平衡代理伺服器，會負責管理與分配我們的請求與回應，在建立 EB 伺服器時，可以預設是否使用 Nginx 當代理伺服器。&lt;/p&gt;
 &lt;h1&gt;Client Max Body Size&lt;/h1&gt;
-&lt;p&gt;client-max-body-size 是 Nginx 中一個設定，能夠指定當有資料進來時，能夠接收的大小有多少，而 EB 在 Nginx 中預設似乎為 1MB，因此導致某個服務在上傳檔案時，發生「413 Request Entity Too Large」，請求資料大小過載的問題，因此開始了尋找解答之旅。&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;client_max_body_size&lt;/code&gt; 是 Nginx 中一個設定，能夠指定當有資料進來時，能夠接收的大小有多少，而 EB 在 Nginx 中預設似乎為 1MB，因此導致某個服務在上傳檔案時，發生「413 Request Entity Too Large」，請求資料大小過載的問題，因此開始了尋找解答之旅。&lt;/p&gt;
 &lt;h1&gt;網路上找解答&lt;/h1&gt;
 &lt;p&gt;找了非常多網路上的資源，都看到類似以下片段&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;config&quot;&gt;&lt;pre class=&quot;language-config&quot;&gt;&lt;code class=&quot;language-config&quot;&gt;files:
@@ -39,7 +39,7 @@ container_commands:
       #!/bin/bash -xe
       service nginx stop
       service nginx start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;從檔案內容中可以看出 client&lt;em&gt;max&lt;/em&gt;body_size 更改後要再 &lt;code class=&quot;language-text&quot;&gt;service nginx stop&lt;/code&gt; 與 &lt;code class=&quot;language-text&quot;&gt;service nginx start&lt;/code&gt; 才能正常運行。&lt;/p&gt;
+&lt;p&gt;從檔案內容中可以看出 &lt;code class=&quot;language-text&quot;&gt;client_max_body_size&lt;/code&gt; 更改後要再 &lt;code class=&quot;language-text&quot;&gt;service nginx stop&lt;/code&gt; 與 &lt;code class=&quot;language-text&quot;&gt;service nginx start&lt;/code&gt; 才能正常運行。&lt;/p&gt;
 &lt;h1&gt;總結&lt;/h1&gt;
 &lt;p&gt;看了網路上百百種解答，調整了老半天，還掛掉導致停機了一段時間，最後內容還是在 AWS Documentation 找到，但至少解決了！&lt;/p&gt;
 &lt;hr&gt;
