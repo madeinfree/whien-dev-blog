@@ -1,7 +1,7 @@
 ---
-title: 修改 AWS Elastic Beanstalk Nginx Proxy Config
+title: 透過修改 AWS Elastic Beanstalk Nginx Proxy Config 解決 「413 Request Entity Too Large」
 date: "2019-04-12T11:11:00.284Z"
-description: "AWS Elastic Beanstalk enviroment 建立時會有預設 client_max_body_size 1MB 的大小限制，找了好多網路答案，最後還是在 AWS 的文件中翻到解答"
+description: "AWS Elastic Beanstalk enviroment 建立時會有預設 client_max_body_size 1MB 的大小限制，導致「413 Request Entity Too Large」問題，找了好多網路答案，最後還是在 AWS 的文件中翻到解答"
 featuredImage: "./titleImage.jpg"
 ---
 
@@ -17,7 +17,7 @@ Nginx 是個強大的負載平衡代理伺服器，會負責管理與分配我�
 
 # Client Max Body Size
 
-client-max-body-size 是 Nginx 中一個設定，能夠指定當有資料進來時，能夠接收的大小有多少，而 EB 在 Nginx 中預設似乎為 1MB，因此導致某個服務在上傳檔案時，發生「413 Request Entity Too Large」，請求資料大小過載的問題，因此開始了尋找解答之旅。
+`client_max_body_size` 是 Nginx 中一個設定，能夠指定當有資料進來時，能夠接收的大小有多少，而 EB 在 Nginx 中預設似乎為 1MB，因此導致某個服務在上傳檔案時，發生「413 Request Entity Too Large」，請求資料大小過載的問題，因此開始了尋找解答之旅。
 
 # 網路上找解答
 
@@ -66,7 +66,7 @@ files:
       service nginx start
 ```
 
-從檔案內容中可以看出 client_max_body_size 更改後要再 `service nginx stop` 與 `service nginx start` 才能正常運行。
+從檔案內容中可以看出 `client_max_body_size` 更改後要再 `service nginx stop` 與 `service nginx start` 才能正常運行。
 
 # 總結
 
