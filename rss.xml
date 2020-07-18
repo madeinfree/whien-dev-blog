@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Whien's Dev Blog]]></title><description><![CDATA[Do right things.]]></description><link>https://madeinfree.github.io/whien-dev-blog</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Mar 2020 18:35:08 GMT</lastBuildDate><item><title><![CDATA[<線上課程販售預告> 入門 Restful 與 GraphQL API 到實戰 API Server]]></title><description><![CDATA[課程介紹 現今因為 SPA（Single Page Application）的廣泛應用下，透過 API 串接資料變得很重要，想提升自己在 API（Application Programming Interface） 的能力嗎？此門課程中你會學習到如何建立自己的 API…]]></description><link>https://madeinfree.github.io/whien-dev-blog/Restful 與 GraphQL 入門並建立 Web Server API 課程預告/</link><guid isPermaLink="false">https://madeinfree.github.io/whien-dev-blog/Restful 與 GraphQL 入門並建立 Web Server API 課程預告/</guid><pubDate>Sun, 08 Mar 2020 01:55:30 GMT</pubDate><content:encoded>&lt;h1&gt;課程介紹&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Whien's Dev Blog]]></title><description><![CDATA[Do right things.]]></description><link>https://madeinfree.github.io/whien-dev-blog</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 18 Jul 2020 13:43:35 GMT</lastBuildDate><item><title><![CDATA[初探使用 React Recoil 管理全域狀態]]></title><description><![CDATA[一直以來我都很喜歡能夠讓程式檔案管理起來乾乾淨淨的，
+也因此會一直嘗試不同的方法來幫助我更好的管理這些檔案，
+而在撰寫 Reactjs 的過程中，偶爾會使用到擁有共同狀態的元件，
+這時候就免不了使用到全域狀態元件來幫忙，
+除了使用 Reactjs 所提供的 Context API…]]></description><link>https://madeinfree.github.io/whien-dev-blog/初探使用 React Recoil 管理全域狀態/</link><guid isPermaLink="false">https://madeinfree.github.io/whien-dev-blog/初探使用 React Recoil 管理全域狀態/</guid><pubDate>Sat, 18 Jul 2020 17:03:30 GMT</pubDate><content:encoded>&lt;p&gt;一直以來我都很喜歡能夠讓程式檔案管理起來乾乾淨淨的，
+也因此會一直嘗試不同的方法來幫助我更好的管理這些檔案，
+而在撰寫 Reactjs 的過程中，偶爾會使用到擁有共同狀態的元件，
+這時候就免不了使用到全域狀態元件來幫忙，
+除了使用 Reactjs 所提供的 Context API 以外，
+常見的輔助套件有 Flux, Redux, Mobx 等等。&lt;/p&gt;
+&lt;p&gt;在最近 Facebook 推出了一款套件叫做 Recoil，
+想當然好奇的我就不經在想，已經有這麼多好用的套件了，何必再出一款差不多的工具呢？&lt;/p&gt;
+&lt;p&gt;於是自己就嘗試跳下了坑，試試看這工具是否能更流暢，也想推薦大家試試看這款新的工具。&lt;/p&gt;
+&lt;h2&gt;簡介 React Recoil&lt;/h2&gt;
+&lt;p&gt;&lt;div class=&quot;gatsby-resp-iframe-wrapper&quot; style=&quot;padding-bottom: 50%; position: relative; height: 0; overflow: hidden; margin-bottom: 1.0725rem&quot; &gt; &lt;div class=&quot;embedVideo-container&quot;&gt; &lt;iframe title src=&quot;https://www.youtube-nocookie.com/embed/Oaua5c7xh9U?rel=0&quot; class=&quot;embedVideo-iframe&quot; style=&quot;border:0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; &quot; allowfullscreen&gt;&lt;/iframe&gt; &lt;/div&gt; &lt;/div&gt;&lt;/p&gt;
+&lt;center&gt;&lt;small&gt;@mcc_abe at @ReactEurope 2020&lt;/small&gt;&lt;/center&gt;&lt;br /&gt;
+&lt;p&gt;一款由 Facebook 推出的狀態管理套件，目前從說明「We use as a case-study a sophisticated data analysis tool developed at Facebook which led us to create this system」，得知 Facebook 也正在使用它。&lt;/p&gt;
+&lt;h2&gt;正片開始&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[<線上課程販售預告> 入門 Restful 與 GraphQL API 到實戰 API Server]]></title><description><![CDATA[課程介紹 現今因為 SPA（Single Page Application）的廣泛應用下，透過 API 串接資料變得很重要，想提升自己在 API（Application Programming Interface） 的能力嗎？此門課程中你會學習到如何建立自己的 API…]]></description><link>https://madeinfree.github.io/whien-dev-blog/Restful 與 GraphQL 入門並建立 Web Server API 課程預告/</link><guid isPermaLink="false">https://madeinfree.github.io/whien-dev-blog/Restful 與 GraphQL 入門並建立 Web Server API 課程預告/</guid><pubDate>Sun, 08 Mar 2020 01:55:30 GMT</pubDate><content:encoded>&lt;h1&gt;課程介紹&lt;/h1&gt;
 &lt;p&gt;現今因為 SPA（Single Page Application）的廣泛應用下，透過 API 串接資料變得很重要，想提升自己在 API（Application Programming Interface） 的能力嗎？此門課程中你會學習到如何建立自己的 API 伺服器，並且一次了解現今最常使用的 Restful API 與 GraphQL API。&lt;/p&gt;
 &lt;h1&gt;課程購買&lt;/h1&gt;
 &lt;ul&gt;
